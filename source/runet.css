@@ -4,6 +4,10 @@
 	100% { background-color: #fcfcfc }
 }
 
+html.__br-root-trigger {
+	overflow: hidden;
+}
+
 body.__br-trigger {
 	width: 100% !important;
 	height: auto !important;
@@ -25,7 +29,7 @@ body > *:not(.__br-elem) {
 	top: 0; left: 0;
 	z-index: 999;
 
-	background-color: rgba(0, 0, 0, .95);
+	background-color: #000;
 
 	width: 100%; height: 100%;
 	overflow-y: scroll;
@@ -56,16 +60,54 @@ body > *:not(.__br-elem) {
 	cursor: pointer;
 }
 
+.__br-elem div p {
+	margin: 1em 0;
+}
+
 .__br-elem div q {
 	quotes: '\00AB' '\00BB' '"' '"';
 }
 
+.__br-elem div b {
+	font-weight: bold;
+}
+
+.__br-elem div a {
+	color: #4a20ff;
+	text-decoration: none;
+	border: 0;
+}
+
+.__br-elem div a:hover {
+	color: #5d38ff;
+}
+
+.__br-elem div ol,
+.__br-elem div ul {
+	padding-left: 2em;
+}
+
+.__br-elem div ol li {
+	list-style-type: decimal;
+}
+
+.__br-elem div ul li {
+	list-style-type: disc;
+}
+
+.__br-elem div header h1,
+.__br-elem div header h2 {
+	font-weight: bold;
+}
+
 .__br-elem div header h1 {
 	margin-bottom: 0;
+	font-size: 2.5em;
 }
 
 .__br-elem div header h2 {
 	margin-top: 0;
+	font-size: 1.5em;
 }
 
 .__br-elem div main {
@@ -76,6 +118,9 @@ body > *:not(.__br-elem) {
 	margin-top: 1em;
 }
 
+.__br-elem div footer hr {
+	border: 1px solid #000;
+}
 
 .__br-elem div.__br-show-footer {
 	animation: __br-shock-anim 1s 1;

@@ -1,7 +1,13 @@
 ;(() => {
 	'use strict'
 
-	if (localStorage && localStorage.getItem('__brWasShown') == 'true') { return }
+	let scriptData = document.currentScript && document.currentScript.dataset
+		? document.currentScript.dataset
+		: {}
+
+	let localStorageItemName = '__brWasShown'
+
+	if (localStorage && localStorage.getItem(localStorageItemName) == 'true' || !scriptData.disabled && scriptData.disabled == '') { return }
 
 	let _ce = e => document.createElement(e)
 
@@ -19,17 +25,18 @@
 
 	let _listItem = text => '<li>' + text + '</li>'
 
-	let scriptData = document.currentScript.dataset
-
 	let cdnURL = scriptData.cdn
 		? scriptData.cdn
-		: 'https://unpkg.com/runet/dist/'
+		: 'https://cdn.jsdelivr.net/npm/runet/dist/'
 
-	if (scriptData.isSelfHosted && scriptData.isSelfHosted == '') { cdnURL = './' }
+	if (!scriptData.isSelfHosted && scriptData.isSelfHosted == '') { cdnURL = './' }
 
-	let triggerClassName = '__br-trigger'
+	let
+		triggerClassName = '__br-trigger',
+		triggerClassNameForRoot = '__br-root-trigger'
 
 	document.body.classList.add(triggerClassName)
+	document.documentElement.classList.add(triggerClassNameForRoot)
 
 	/* подгрузка стилей */
 
@@ -51,7 +58,8 @@
 
 	rknLogo.onclick = e => {
 		document.body.classList.remove(triggerClassName)
-		localStorage.setItem('__brWasShown', 'true')
+		document.documentElement.classList.remove(triggerClassNameForRoot)
+		localStorage.setItem(localStorageItemName, 'true')
 	}
 
 	content.appendChild(rknLogo)
@@ -64,7 +72,7 @@
 		? location.hostname
 		: 'test'
 
-	contentHeader.innerHTML = '<h1>Уважа&shy;емый пользо&shy;ватель!</h1><h2>Мы приносим свои извинения, но доступ к запраши&shy;ваемому ресурсу <b>' + hostName + '</b> был ограничен.</h2>'
+	contentHeader.innerHTML = '<h1>Уважа&shy;емый пользо&shy;ватель!</h1><h2>Мы приносим свои извинения, но доступ к ресурсу <b>' + hostName + '</b> был ограничен.</h2>'
 
 	content.appendChild(contentHeader)
 
@@ -91,13 +99,14 @@
 	let contentFooter = _ce('footer')
 
 	let sitesListHTML
-		= '<p>Подробнее об этом Вы можете почитать на следующих ресурсах:</p><ul>'
+		= '<p>Подробнее с этим Вы можете ознакомиться на следующих ресурсах:</p><ul>'
 			+ _listItem('Общество Защиты Интернета &ndash; ' + _link('https://ozi-ru.org', 'ozi-ru.org'))
-			+ _listItem('История регулирования Рунета &ndash; ' + _link('https://reestr.rublacklist.net/history/', 'reestr.rublacklist.net'))
-			+ _listItem('<q>Объявляем забастовку избирателей</q> &ndash; ' + _link('https://2018.navalny.com/post/496/', '2018.navalny.com'))
+			+ _listItem('Инфографика <q>История регулирования Рунета</q> &ndash; ' + _link('https://reestr.rublacklist.net/history/', 'reestr.rublacklist.net'))
+			+ _listItem('Пост <q>Объявляем забастовку избирателей</q> &ndash; ' + _link('https://2018.navalny.com/post/496/', '2018.navalny.com'))
+			+ _listItem('Видео <q>Бойкот выборов: за и против</q> &ndash; ' + _link('https://www.youtube.com/watch?v=9wg13Sp9N6U', 'youtube.com'))
 		+ '</ul>'
 
-	contentFooter.innerHTML = '<hr><p>Вы ведь так не хотите, чтобы вот так Вас встречал каждый любимый сайт, верно?</p><p>Тогда советуем <b>18 марта 2018 года</b> бойкотировать выборы президента РФ &ndash; поход на них означает, что Вы поддерживаете политику уничтожения свободы в Российском сегменте Интернета, которая ведётся нашим государтвом.</p>'
+	contentFooter.innerHTML = '<hr><p>Вы ведь не хотите, чтобы вот так Вас встречал каждый сайт, верно?</p><p>Тогда советуем <b>18 марта 2018 года</b> бойкотировать выборы президента РФ &ndash; поход на них означает, что Вы поддерживаете политику уничтожения свободы в Российском сегменте Интернета, которая ведётся нашим государтвом.</p>'
 
 	contentFooter.innerHTML += sitesListHTML
 
@@ -108,7 +117,7 @@
 
 	let timerTime = scriptData.timer && scriptData.timer != '' && Number(scriptData.timer)
 		? Number(scriptData.timer)
-		: 9999
+		: 7999
 
 	setTimeout(() => {
 		content.classList.add('__br-show-footer')
