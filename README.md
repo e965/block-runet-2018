@@ -8,7 +8,6 @@
 
 <!-- ...или же от unpkg. -->
 <script src="https://unpkg.com/runet/dist/runet.min.js" data-cdn="https://unpkg.com/runet/dist/" async></script>
-<!-- Обратите внимание, присутствует аттрибут data-cdn, в котором также указан unpkg. Это необходимо, чтобы ресурсы подгружались не с jsDelivr. -->
 ```
 Обратите внимание, во втором случае у тега `<script>` присутствует аттрибут `data-cdn`, в котором также указан unpkg. Это необходимо, чтобы ресурсы подгружались не с jsDelivr.  
 В случае, если на вашем сайте включен Content Security Policy, обязательно убедитесь, добавлена ли нужная CDN в `script-src` и `style-src`.
