@@ -8,6 +8,16 @@ html.__br-root-trigger {
 	overflow: hidden;
 }
 
+html.__br-root-trigger * {
+	box-sizing: content-box;
+	margin: unset;
+	padding: unset;
+	text-align: left;
+	opacity: 1;
+	color: unset;
+	text-shadow: none;
+}
+
 body.__br-trigger {
 	width: 100% !important;
 	height: auto !important;
@@ -79,7 +89,7 @@ body > *:not(.__br-elem) {
 }
 
 .__br-elem div a:hover {
-	color: #5d38ff;
+	color: #886dff;
 }
 
 .__br-elem div ol,
