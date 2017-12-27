@@ -1,6 +1,6 @@
 {
 	"name": "runet",
-	"description": "",
+	"description": "Волшебный скрипт, блокирующий Ваш сайт. По крайней мере, изумлённый пользователь будет так думать.",
 	"version": "0.0.5",
 	"author": "Cojam",
 	"repository": "github:tehcojam/block-runet-2018",

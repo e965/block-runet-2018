@@ -60,7 +60,6 @@
 
 ```HTML
 <script src="..." data-site-title="Tested Test Inc." async></script>
-<!-- футер покажется через 3 секунды -->
 ```
 
 ### Лицензирование
