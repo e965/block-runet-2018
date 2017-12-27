@@ -54,7 +54,9 @@
 	/* лого РКН */
 
 	let rknLogo = _ce('div')
+
 	rknLogo.classList.add('rkn-logo')
+	rknLogo.textContent = 'Роскомнадзор'
 
 	rknLogo.onclick = e => {
 		document.body.classList.remove(triggerClassName)
@@ -72,7 +74,11 @@
 		? location.hostname
 		: 'test'
 
-	contentHeader.innerHTML = '<h1>Уважа&shy;емый пользо&shy;ватель!</h1><h2>Мы приносим свои извинения, но доступ к ресурсу <b>' + hostName + '</b> был ограничен.</h2>'
+	if (scriptData.siteTitle && scriptData.siteTitle != '') {
+		hostName = '<q>' + scriptData.siteTitle + '</q>'
+	}
+
+	contentHeader.innerHTML = '<h1>Уважа&shy;емый пользо&shy;ватель!</h1><h2>Мы приносим свои извинения, но доступ к ресурсу ' + hostName + ' был ограничен.</h2>'
 
 	content.appendChild(contentHeader)
 
